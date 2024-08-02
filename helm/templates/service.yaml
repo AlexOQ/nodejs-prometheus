@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nodejs-prometheus.fullname" . }}
+  labels:
+    app: {{ include "nodejs-prometheus.name" . }}
+    release: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: 3000
+  selector:
+    app: {{ include "nodejs-prometheus.name" . }}

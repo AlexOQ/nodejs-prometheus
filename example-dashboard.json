@@ -1,0 +1,26 @@
+{
+    "panels": [
+        {
+            "type": "graph",
+            "title": "Total Request Operations",
+            "targets": [
+                {
+                    "expr": "node_request_operations_total",
+                    "legendFormat": "{{instance}}",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "type": "graph",
+            "title": "Request Duration",
+            "targets": [
+                {
+                    "expr": "histogram_quantile(0.95, sum(rate(node_request_duration_seconds_bucket[5m])) by (le))",
+                    "legendFormat": "95th percentile",
+                    "refId": "B"
+                }
+            ]
+        }
+    ]
+}

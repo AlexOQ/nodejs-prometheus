@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-prometheus",
+  "version": "1.0.0",
+  "description": "This repository contains a Node.js application that is monitored using Prometheus. The setup includes a Helm chart for deploying the application and a `ServiceMonitor` for Prometheus to scrape metrics from the application.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "prom-client": "^15.1.3"
+  }
+}
