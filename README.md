@@ -2,6 +2,28 @@
 
 This repository contains a Node.js application that is monitored using Prometheus. The setup includes a Helm chart for deploying the application that includes a `ServiceMonitor` for Prometheus to scrape metrics from the application.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Kubernetes Cluster
+        subgraph nodejs-prometheus namespace
+            App[Node.js App<br/>:3000]
+            SM[ServiceMonitor]
+        end
+        subgraph monitoring namespace
+            Prom[Prometheus<br/>:9090]
+            Graf[Grafana<br/>:3000]
+        end
+    end
+
+    User([User]) -->|HTTP Request| App
+    App -->|/metrics| SM
+    SM -->|scrape| Prom
+    Prom -->|data source| Graf
+    Graf -->|dashboard| User
+```
+
 ## Prerequisites
 
 - Kubernetes cluster
